@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening Ceremony O2SN Lubuklinggau Selatan I</title>
+    <style>
+        body { margin: 0; background: #000; overflow: hidden; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        canvas { display: block; }
+
+        #ui-layer {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #00f2ff;
+            pointer-events: none;
+            width: 100%;
+        }
+
+        h1 { font-size: 3rem; letter-spacing: 5px; text-shadow: 0 0 20px #00f2ff; margin-bottom: 10px; }
+        p { font-size: 1.2rem; opacity: 0.8; }
+
+        .palm-guide {
+            width: 250px;
+            height: 250px;
+            border: 2px solid rgba(0, 242, 255, 0.3);
+            border-radius: 50%;
+            margin: 20px auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 242, 255, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(0, 242, 255, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 242, 255, 0); }
+        }
+
+        .instruction { color: #fff; font-weight: bold; text-transform: uppercase; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div id="ui-layer">
+        <p>OPENING CEREMONY</p>
+        <h1>O2SN 2026</h1>
+        <h3>KECAMATAN LUBUKLINGGAU SELATAN I</h3>
+        <div class="palm-guide">
+            <span style="font-size: 50px;">✋</span>
+        </div>
+        <p class="instruction">TEMPELKAN TELAPAK TANGAN UNTUK MEMBUKA ACARA</p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', init);
+        init();
+
+        class Particle {
+            constructor(x, y, color, speed) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.size = Math.random() * 3 + 1;
+                this.vx = (Math.random() - 0.5) * speed;
+                this.vy = (Math.random() - 0.5) * speed;
+                this.alpha = 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= 0.01;
+            }
+
+            draw() {
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function createExplosion(x, y) {
+            const colors = ['#00f2ff', '#0072ff', '#ffffff', '#ffd700'];
+            for (let i = 0; i < 150; i++) {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, color, 15));
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, width, height);
+
+            particles.forEach((p, i) => {
+                p.update();
+                p.draw();
+                if (p.alpha <= 0) particles.splice(i, 1);
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        // Interaksi Sentuh/Klik
+        window.addEventListener('mousedown', (e) => {
+            createExplosion(e.clientX, e.clientY);
+            
+            // Efek suara (opsional: buka komentar jika ada file audio)
+            // new Audio('impact.mp3').play(); 
+        });
+
+        window.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            createExplosion(touch.clientX, touch.clientY);
+        });
+
+        animate();
+    </script>
+</body>
+</html>
