@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengumuman Kelulusan Kelas 6 SD NEGERI 67 LUBUKLINGGAU</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@3.4.15"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .bg-gradient {
@@ -30,7 +30,7 @@
                 <p class="text-gray-500 text-sm mt-1">Masukkan Nomor Induk Siswa (NIS) Anda dengan benar.</p>
             </div>
 
-            <form id="login-form" onsubmit="handleLogin(event)">
+            <form id="login-form">
                 <div class="mb-5">
                     <label for="nis-input" class="block text-sm font-semibold text-gray-700 mb-2">Nomor Induk Siswa (NIS)</label>
                     <div class="relative">
@@ -43,7 +43,7 @@
                     <p id="error-message" class="text-red-500 text-xs mt-2 hidden">NIS tidak ditemukan! Periksa kembali nomor Anda.</p>
                 </div>
 
-                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer">
+                <button type="submit" id="btn-submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-magnifying-glass"></i> Periksa Kelulusan
                 </button>
             </form>
@@ -81,10 +81,10 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3 justify-between items-center">
-                <button onclick="logout()" class="w-full sm:w-auto px-5 py-2.5 bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm">
+                <button type="button" onclick="logout()" class="w-full sm:w-auto px-5 py-2.5 bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm">
                     <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
                 </button>
-                <button onclick="window.print()" class="w-full sm:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm flex items-center justify-center gap-2">
+                <button type="button" onclick="window.print()" class="w-full sm:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm flex items-center justify-center gap-2">
                     <i class="fa-solid fa-print"></i> Cetak Bukti Kelulusan
                 </button>
             </div>
@@ -125,64 +125,4 @@
             { "nis": "0137724987", "nama": "NOVI AL FAJZRI", "ttl": "Banyuasin, 19 November 2013", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
             { "nis": "0136713228", "nama": "POPPY OKTARY", "ttl": "Lubuklinggau, 22 Oktober 2013", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
             { "nis": "3138022464", "nama": "RAHMAT APRI YANTO", "ttl": "Lubuklinggau, 03 November 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
-            { "nis": "0133655260", "nama": "RAISA PURNAMA SARI", "ttl": "Lubuklinggau, 07 November 2013", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
-            { "nis": "3137814424", "nama": "RANI SAPUTRI", "ttl": "Sarolangun, 08 September 2013", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
-            { "nis": "0139999850", "nama": "REGA ADITIA", "ttl": "Lubuklinggau, 01 September 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
-            { "nis": "3148467060", "nama": "RERE AKILA", "ttl": "Lubuklinggau, 16 September 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
-            { "nis": "3145933230", "nama": "RIZKI RAMADANI", "ttl": "Lubuklinggau, 27 Juni 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
-            { "nis": "0139158538", "nama": "SEPTIANA ZURAIDA", "ttl": "Musi Rawas, 03 November 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
-            { "nis": "3145016705", "nama": "SESSI SELVI YANTI", "ttl": "Lubuklinggau, 13 Oktober 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
-            { "nis": "0138441280", "nama": "SIYFA AKILA", "ttl": "Lubuklinggau, 07 September 2013", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
-            { "nis": "0149547474", "nama": "SONI ZIDAN SAPUTRA", "ttl": "Lubuklinggau, 03 Juni 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
-            { "nis": "3147998679", "nama": "SYARIFAH NURHASANAH", "ttl": "Lubuklinggau, 06 Mei 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
-            { "nis": "3144712607", "nama": "VATAN ALIF", "ttl": "Lubuklinggau, 12 Juli 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
-            { "nis": "3148835960", "nama": "WIDIA HUSNUL KHOTIMA", "ttl": "Lubuklinggau, 12 September 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." }
-        ];
-
-        // Fungsi Menangani Proses Login / Pencarian NIS
-        function handleLogin(event) {
-            event.preventDefault(); // Mencegah reload halaman
-            
-            const inputNis = document.getElementById('nis-input').value.trim();
-            const errorMsg = document.getElementById('error-message');
-            
-            // Perubahan di sini: Konversi pembanding ke string & bersihkan spasi agar pasti cocok
-            const siswa = databaseSiswa.find(s => String(s.nis).trim() === String(inputNis));
-
-            if (siswa) {
-                // Sembunyikan error jika sebelumnya ada
-                errorMsg.classList.add('hidden');
-                
-                // Isi data ke halaman hasil
-                document.getElementById('res-nama').innerText = siswa.nama;
-                document.getElementById('res-nis').innerText = siswa.nis;
-                document.getElementById('res-ttl').innerText = siswa.ttl;
-                document.getElementById('res-status').innerText = siswa.status;
-                document.getElementById('res-note').innerText = siswa.catatan;
-
-                // Atur warna tampilan box status berdasarkan kelulusan
-                const statusBox = document.getElementById('status-box');
-                if (siswa.status === "LULUS") {
-                    statusBox.className = "text-center p-6 rounded-xl mb-6 bg-green-100 text-green-800 border-2 border-green-300";
-                } else {
-                    statusBox.className = "text-center p-6 rounded-xl mb-6 bg-red-100 text-red-800 border-2 border-red-300";
-                }
-
-                // Pindah Tampilan Halaman (Sembunyikan login, munculkan hasil)
-                document.getElementById('login-section').classList.add('hidden');
-                document.getElementById('result-section').classList.remove('hidden');
-            } else {
-                // Tampilkan pesan error jika NIS tidak ada
-                errorMsg.classList.remove('hidden');
-            }
-        }
-
-        // Fungsi untuk Kembali ke Halaman Login
-        function logout() {
-            document.getElementById('nis-input').value = '';
-            document.getElementById('result-section').classList.add('hidden');
-            document.getElementById('login-section').classList.remove('hidden');
-        }
-    </script>
-</body>
-</html>
+            { "nis": "0133
