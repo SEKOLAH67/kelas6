@@ -146,8 +146,8 @@
             const inputNis = document.getElementById('nis-input').value.trim();
             const errorMsg = document.getElementById('error-message');
             
-            // Cari data siswa berdasarkan NIS
-            const siswa = databaseSiswa.find(s => s.nis === inputNis);
+            // Perubahan di sini: Konversi pembanding ke string & bersihkan spasi agar pasti cocok
+            const siswa = databaseSiswa.find(s => String(s.nis).trim() === String(inputNis));
 
             if (siswa) {
                 // Sembunyikan error jika sebelumnya ada
