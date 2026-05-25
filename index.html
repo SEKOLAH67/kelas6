@@ -26,7 +26,7 @@
                 <div class="inline-block p-4 bg-blue-50 text-blue-600 rounded-full mb-3">
                     <i class="fa-solid fa-graduation-cap text-4xl"></i>
                 </div>
-                <h2 class="text-xl font-bold text-gray-850">Cek Status Kelulusan</h2>
+                <h2 class="text-xl font-bold text-gray-800">Cek Status Kelulusan</h2>
                 <p class="text-gray-500 text-sm mt-1">Masukkan Nama Lengkap Siswa Anda dengan benar.</p>
             </div>
 
@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div id="status-box" class="text-center p-6 rounded-xl mb-6">
+            <div id="status-box" class="text-center p-6 rounded-xl mb-6 border-2">
                 <p class="text-sm uppercase tracking-wider font-semibold opacity-90">Dinyatakan</p>
                 <h3 id="res-status" class="text-3xl font-extrabold my-1">-</h3>
                 <p id="res-note" class="text-xs mt-2 opacity-90"></p>
@@ -141,38 +141,13 @@
 
         // Fungsi Menangani Proses Login / Pencarian Nama Siswa
         function handleLogin(event) {
-            event.preventDefault(); // Mencegah halaman refresh
+            event.preventDefault(); // Mencegah reload halaman
             
             const inputNama = document.getElementById('nama-input').value.trim().toLowerCase();
             const errorMsg = document.getElementById('error-message');
             
-            // Mencari data siswa berdasarkan nama (Mengabaikan perbedaan huruf besar/kecil)
+            // Mencari data siswa berdasarkan nama (Case-Insensitive)
             const siswa = databaseSiswa.find(s => s.nama.trim().toLowerCase() === inputNama);
 
             if (siswa) {
-                errorMsg.classList.add('hidden');
-                
-                // Memasukkan data ke element halaman hasil
-                document.getElementById('res-nama').innerText = siswa.nama;
-                document.getElementById('res-nis').innerText = siswa.nis;
-                document.getElementById('res-ttl').innerText = siswa.ttl;
-                document.getElementById('res-status').innerText = siswa.status;
-                document.getElementById('res-note').innerText = siswa.catatan;
-
-                // Mengatur visual box status kelulusan
-                const statusBox = document.getElementById('status-box');
-                if (siswa.status === "LULUS") {
-                    statusBox.className = "text-center p-6 rounded-xl mb-6 bg-green-100 text-green-800 border-2 border-green-300";
-                } else {
-                    statusBox.className = "text-center p-6 rounded-xl mb-6 bg-red-100 text-red-800 border-2 border-red-300";
-                }
-
-                // Mengubah visibilitas antar section halaman
-                document.getElementById('login-section').classList.add('hidden');
-                document.getElementById('result-section').classList.remove('hidden');
-            } else {
-                errorMsg.classList.remove('hidden');
-            }
-        }
-
-        // Fungsi Kembali ke Form A
+                errorMsg.classList.add('
