@@ -21,7 +21,7 @@
 
     <main class="flex-grow flex items-center justify-center p-4">
         
-        <div id="login-section" class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md transition-all duration-300">
+        <div id="login-section" class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md transition-all duration-300" style="display: block;">
             <div class="text-center mb-6">
                 <div class="inline-block p-4 bg-blue-50 text-blue-600 rounded-full mb-3">
                     <i class="fa-solid fa-graduation-cap text-4xl"></i>
@@ -40,7 +40,7 @@
                         <input type="text" id="nama-input" required placeholder="Contoh: ADRI RIASA" 
                             class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all uppercase">
                     </div>
-                    <p id="error-message" class="text-red-500 text-xs mt-2 hidden">Nama siswa tidak ditemukan! Periksa kembali ejaan nama Anda.</p>
+                    <p id="error-message" class="text-red-500 text-xs mt-2" style="display: none;">Nama siswa tidak ditemukan! Periksa kembali ejaan nama Anda.</p>
                 </div>
 
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer">
@@ -49,7 +49,7 @@
             </form>
         </div>
 
-        <div id="result-section" class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl hidden transition-all duration-300">
+        <div id="result-section" class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl transition-all duration-300" style="display: none;">
             <div class="text-center border-b border-gray-200 pb-4 mb-6">
                 <h2 class="text-2xl font-bold text-gray-800">Surat Keterangan Kelulusan Mandiri</h2>
                 <p class="text-sm text-gray-500">Hasil evaluasi belajar akhir tingkat Sekolah Dasar</p>
@@ -146,8 +146,8 @@
             const inputNama = document.getElementById('nama-input').value.trim().toLowerCase();
             const errorMsg = document.getElementById('error-message');
             
-            // Mencari data siswa berdasarkan nama (Case-Insensitive)
+            // Mencari data siswa berdasarkan nama
             const siswa = databaseSiswa.find(s => s.nama.trim().toLowerCase() === inputNama);
 
             if (siswa) {
-                errorMsg.classList.add('
+                // Sembunyikan pesan error menggunakan
