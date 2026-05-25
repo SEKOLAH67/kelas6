@@ -84,4 +84,108 @@
                 <button onclick="logout()" class="w-full sm:w-auto px-5 py-2.5 bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm">
                     <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
                 </button>
-                <button onclick="window.print()" class="w-full sm:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors cursor-pointer text
+                <button onclick="window.print()" class="w-full sm:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-print"></i> Cetak Bukti Kelulusan
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-gray-800 text-gray-400 text-center py-4 text-xs border-t border-gray-700">
+        <p>&copy; 2026 Panitia Kelulusan Sekolah Dasar Negeri 67 Kelas 6. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // --- DATABASE SISWA ---
+        const databaseSiswa = [
+            { "nis": "3134497653", "nama": "ADRI RIASA", "ttl": "Lubuklinggau, 08 Oktober 2013", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "3130538517", "nama": "ALDO ALIFIANO", "ttl": "Lubuklinggau, 21 Desember 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "0137951702", "nama": "ANINDYA AZALEA SYAKHI", "ttl": "Lubuklinggau, 12 Juli 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "0134103112", "nama": "AQILLA ADHA ROVTA", "ttl": "Lubuklinggau, 04 November 2013", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0135562398", "nama": "DANIAL RAMADHANISH", "ttl": "Lubuklinggau, 14 Juli 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "0143182641", "nama": "DAVIGO DWI VARELTA", "ttl": "Lubuklinggau, 28 Oktober 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "3147278395", "nama": "DHARMA PRAYOGI", "ttl": "Lubuklinggau, 07 Mei 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0139327660", "nama": "DIMAS KEVIN", "ttl": "Lubuklinggau, 22 September 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "0139684641", "nama": "ERNI PUTRI", "ttl": "Lubuklinggau, 16 September 2013", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "0149874430", "nama": "FAQIH KHAIRY RAHMAN", "ttl": "Lubuklinggau, 23 Agustus 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0141418574", "nama": "HALIMAH", "ttl": "Lubuklinggau, 29 Juli 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "0141182855", "nama": "KATMILA", "ttl": "Lubuklinggau, 18 Januari 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "0137823346", "nama": "KAYLA HAFIZA RAHMA DINI", "ttl": "YogyaKarta, 06 Juli 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0144145789", "nama": "KENZIE PRAYATA ALENDRA", "ttl": "Lubuklinggau, 13 Maret 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "0141411557", "nama": "KHIRANA LARASATY PUTRI RAGIL", "ttl": "Lubuklinggau, 04 Juni 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "0141392586", "nama": "KHOFIFAH NUR HIDAYAH", "ttl": "Lubuklinggau, 31 Agustus 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0132681562", "nama": "KIAN FIQI ANUGRAH", "ttl": "Bukit Langkap, 13 Desember 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "0146916753", "nama": "MERI ASTUTI", "ttl": "Lubuklinggau, 29 Mei 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "0142028494", "nama": "MUHAMAD AL ARIF", "ttl": "Lubuklinggau, 28 April 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "3144380087", "nama": "MUHAMMAD ARSALNA", "ttl": "Lubuklinggau, 14 April 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "3146513190", "nama": "MUHAMMAD HENGKI MURDAN", "ttl": "Lubuklinggau, 13 Januari 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "0149398630", "nama": "NAFISAH AULIA", "ttl": "Lubuklinggau, 10 Agustus 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0142004350", "nama": "NAZJWA CANTIKA PUTRY", "ttl": "Lubuklinggau, 06 Mei 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "0137724987", "nama": "NOVI AL FAJZRI", "ttl": "Banyuasin, 19 November 2013", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "0136713228", "nama": "POPPY OKTARY", "ttl": "Lubuklinggau, 22 Oktober 2013", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "3138022464", "nama": "RAHMAT APRI YANTO", "ttl": "Lubuklinggau, 03 November 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "0133655260", "nama": "RAISA PURNAMA SARI", "ttl": "Lubuklinggau, 07 November 2013", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "3137814424", "nama": "RANI SAPUTRI", "ttl": "Sarolangun, 08 September 2013", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0139999850", "nama": "REGA ADITIA", "ttl": "Lubuklinggau, 01 September 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "3148467060", "nama": "RERE AKILA", "ttl": "Lubuklinggau, 16 September 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "3145933230", "nama": "RIZKI RAMADANI", "ttl": "Lubuklinggau, 27 Juni 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0139158538", "nama": "SEPTIANA ZURAIDA", "ttl": "Musi Rawas, 03 November 2013", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "3145016705", "nama": "SESSI SELVI YANTI", "ttl": "Lubuklinggau, 13 Oktober 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "0138441280", "nama": "SIYFA AKILA", "ttl": "Lubuklinggau, 07 September 2013", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "0149547474", "nama": "SONI ZIDAN SAPUTRA", "ttl": "Lubuklinggau, 03 Juni 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." },
+            { "nis": "3147998679", "nama": "SYARIFAH NURHASANAH", "ttl": "Lubuklinggau, 06 Mei 2014", "status": "LULUS", "catatan": "Selamat! Semangat belajar di sekolah yang baru." },
+            { "nis": "3144712607", "nama": "VATAN ALIF", "ttl": "Lubuklinggau, 12 Juli 2014", "status": "LULUS", "catatan": "Selamat! Pertahankan prestasimu di jenjang SMP." },
+            { "nis": "3148835960", "nama": "WIDIA HUSNUL KHOTIMA", "ttl": "Lubuklinggau, 12 September 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." }
+        ];
+
+        // LOGIKA BARU: Pencarian Berdasarkan NIS Siswa
+        function handleLogin(event) {
+            event.preventDefault(); // Mencegah reload halaman
+            
+            const inputNis = document.getElementById('nis-input').value.trim();
+            const errorMsg = document.getElementById('error-message');
+            
+            // Mencari data siswa berdasarkan NIS yang cocok
+            const siswa = databaseSiswa.find(s => s.nis.trim() === inputNis);
+
+            if (siswa) {
+                errorMsg.style.display = 'none';
+                
+                // Isi data kelulusan ke halaman hasil
+                document.getElementById('res-nama').innerText = siswa.nama;
+                document.getElementById('res-nis').innerText = siswa.nis;
+                document.getElementById('res-ttl').innerText = siswa.ttl;
+                document.getElementById('res-status').innerText = siswa.status;
+                document.getElementById('res-note').innerText = siswa.catatan;
+
+                // Atur warna kotak status
+                const statusBox = document.getElementById('status-box');
+                if (siswa.status === "LULUS") {
+                    statusBox.style.backgroundColor = "#dcfce7"; 
+                    statusBox.style.borderColor = "#86efac";     
+                    statusBox.style.color = "#166534";
+                } else {
+                    statusBox.style.backgroundColor = "#fee2e2"; 
+                    statusBox.style.borderColor = "#fca5a5";     
+                    statusBox.style.color = "#991b1b";
+                }
+
+                // Ganti halaman dengan Display DOM murni (Aman & Lancar)
+                document.getElementById('login-section').style.display = 'none';
+                document.getElementById('result-section').style.display = 'block';
+            } else {
+                // Tampilkan pesan error jika NIS salah
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        // Fungsi Kembali/Logout
+        function logout() {
+            document.getElementById('nis-input').value = '';
+            document.getElementById('result-section').style.display = 'none';
+            document.getElementById('login-section').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
