@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengumuman Kelulusan Kelas 6 SD NEGERI 67 LUBUKLINGGAU</title>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@3.4.15"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .bg-gradient {
@@ -26,11 +26,11 @@
                 <div class="inline-block p-4 bg-blue-50 text-blue-600 rounded-full mb-3">
                     <i class="fa-solid fa-graduation-cap text-4xl"></i>
                 </div>
-                <h2 class="text-xl font-bold text-gray-800">Cek Status Kelulusan</h2>
-                <p class="text-gray-500 text-sm mt-1">Masukkan Nama Lengkap Siswa sesuai kartu ujian/rapor.</p>
+                <h2 class="text-xl font-bold text-gray-850">Cek Status Kelulusan</h2>
+                <p class="text-gray-500 text-sm mt-1">Masukkan Nama Lengkap Siswa Anda dengan benar.</p>
             </div>
 
-            <form id="login-form">
+            <form id="login-form" onsubmit="handleLogin(event)">
                 <div class="mb-5">
                     <label for="nama-input" class="block text-sm font-semibold text-gray-700 mb-2">Nama Lengkap Siswa</label>
                     <div class="relative">
@@ -43,7 +43,7 @@
                     <p id="error-message" class="text-red-500 text-xs mt-2 hidden">Nama siswa tidak ditemukan! Periksa kembali ejaan nama Anda.</p>
                 </div>
 
-                <button type="submit" id="btn-submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer">
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-magnifying-glass"></i> Periksa Kelulusan
                 </button>
             </form>
@@ -81,10 +81,10 @@
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3 justify-between items-center">
-                <button type="button" onclick="logout()" class="w-full sm:w-auto px-5 py-2.5 bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm">
+                <button onclick="logout()" class="w-full sm:w-auto px-5 py-2.5 bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm">
                     <i class="fa-solid fa-arrow-left mr-1"></i> Kembali
                 </button>
-                <button type="button" onclick="window.print()" class="w-full sm:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm flex items-center justify-center gap-2">
+                <button onclick="window.print()" class="w-full sm:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors cursor-pointer text-sm flex items-center justify-center gap-2">
                     <i class="fa-solid fa-print"></i> Cetak Bukti Kelulusan
                 </button>
             </div>
@@ -139,27 +139,27 @@
             { "nis": "3148835960", "nama": "WIDIA HUSNUL KHOTIMA", "ttl": "Lubuklinggau, 12 September 2014", "status": "LULUS", "catatan": "Selamat! Sukses selalu untuk jenjang pendidikan berikutnya." }
         ];
 
-        // Memasang Event Listener Form secara langsung menggunakan JavaScript
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // Fungsi Menangani Proses Login / Pencarian Nama Siswa
+        function handleLogin(event) {
+            event.preventDefault(); // Mencegah halaman refresh
             
-            // Mengambil input nama, hilangkan spasi depan-belakang, ubah ke huruf kecil semua
             const inputNama = document.getElementById('nama-input').value.trim().toLowerCase();
             const errorMsg = document.getElementById('error-message');
             
-            // Cari data berdasarkan nama siswa yang diubah ke huruf kecil semua (case-insensitive)
+            // Mencari data siswa berdasarkan nama (Mengabaikan perbedaan huruf besar/kecil)
             const siswa = databaseSiswa.find(s => s.nama.trim().toLowerCase() === inputNama);
 
             if (siswa) {
                 errorMsg.classList.add('hidden');
                 
-                // Distribusi data siswa ke HTML
+                // Memasukkan data ke element halaman hasil
                 document.getElementById('res-nama').innerText = siswa.nama;
                 document.getElementById('res-nis').innerText = siswa.nis;
                 document.getElementById('res-ttl').innerText = siswa.ttl;
                 document.getElementById('res-status').innerText = siswa.status;
                 document.getElementById('res-note').innerText = siswa.catatan;
 
+                // Mengatur visual box status kelulusan
                 const statusBox = document.getElementById('status-box');
                 if (siswa.status === "LULUS") {
                     statusBox.className = "text-center p-6 rounded-xl mb-6 bg-green-100 text-green-800 border-2 border-green-300";
@@ -167,20 +167,12 @@
                     statusBox.className = "text-center p-6 rounded-xl mb-6 bg-red-100 text-red-800 border-2 border-red-300";
                 }
 
-                // Ganti tampilan screen
+                // Mengubah visibilitas antar section halaman
                 document.getElementById('login-section').classList.add('hidden');
                 document.getElementById('result-section').classList.remove('hidden');
             } else {
                 errorMsg.classList.remove('hidden');
             }
-        });
-
-        // Fungsi Logout / Kembali
-        function logout() {
-            document.getElementById('nama-input').value = '';
-            document.getElementById('result-section').classList.add('hidden');
-            document.getElementById('login-section').classList.remove('hidden');
         }
-    </script>
-</body>
-</html>
+
+        // Fungsi Kembali ke Form A
